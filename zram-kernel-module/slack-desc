@@ -1,0 +1,21 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+                  |-----handy-ruler-------------------------------------------------------|
+zram-kernel-module: zram (Linux Kernel Module)
+zram-kernel-module:
+zram-kernel-module: zram is a module of the Linux kernel, previously called "compcache".
+zram-kernel-module: zram increases performance by avoiding paging on disk and instead uses
+zram-kernel-module: a compressed block device in RAM in which paging takes place until it
+zram-kernel-module: is necessary to use the swap space on the hard disk drive. Since using
+zram-kernel-module: RAM is an alternative way to provide swapping on RAM, zram allows
+zram-kernel-module: Linux to make more use of RAM when swapping/paging is required,
+zram-kernel-module: especially on older computers with less RAM installed.
+zram-kernel-module:
+zram-kernel-module: Homepage: https://code.google.com/p/compcache/
+
+

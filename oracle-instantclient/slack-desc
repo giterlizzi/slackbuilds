@@ -1,0 +1,20 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+                    |-----handy-ruler-------------------------------------------------------|
+oracle-instantclient: Oracle Database Instant Client (database management)
+oracle-instantclient:
+oracle-instantclient: Instant Client allows you to run your applications without installing
+oracle-instantclient: the standard Oracle client or having an ORACLE_HOME. OCI, OCCI,
+oracle-instantclient: Pro*C, ODBC, and JDBC applications work without modification, while
+oracle-instantclient: using significantly less disk space than before. Even SQL*Plus can be
+oracle-instantclient: used with Instant Client.
+oracle-instantclient: 
+oracle-instantclient: Homepage: http://www.oracle.com/technology/tech/oci/oracle-instantclient/
+oracle-instantclient:
+oracle-instantclient:
+

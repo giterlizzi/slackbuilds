@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+            |-----handy-ruler------------------------------------------------------|
+kdeplasma-addons-stdin: STDIN Plasmoid
+kdeplasma-addons-stdin:
+kdeplasma-addons-stdin: This plasmoid executes a process and captures its stdout or
+kdeplasma-addons-stdin: stderr output stream, it can also display the content of a
+kdeplasma-addons-stdin: local file or a remote file via KIO.
+kdeplasma-addons-stdin: You can think of this plasmoid as a general purpose
+kdeplasma-addons-stdin: scriptable plasmoid, even for languages not supported by
+kdeplasma-addons-stdin: kross, because you can make an script and capture its
+kdeplasma-addons-stdin: output :-)
+kdeplasma-addons-stdin:
+kdeplasma-addons-stdin: Home: http://kde-look.org/content/show.php/?content=92309 

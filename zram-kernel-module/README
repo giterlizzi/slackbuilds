@@ -1,0 +1,21 @@
+zram is a module of the Linux kernel, previously called "compcache". zram 
+increases performance by avoiding paging on disk and instead uses a compressed
+block device in RAM in which paging takes place until it is necessary to use the
+swap space on the hard disk drive. Since using RAM is an alternative way to
+provide swapping on RAM, zram allows Linux to make more use of RAM when
+swapping/paging is required, especially on older computers with less RAM
+installed.
+
+This package contain a start/stop script: /etc/rc.d/rc.zram
+
+The rc.zram script create 1024M (1G) of swap memory by default. If you prefer
+change the dimensions of the swap memory, edit the SIZE variabile.
+
+If you need start zram at boot add the following to your /etc/rc.d/rc.local
+script and make sure rc.zram has executable permissions set:
+
+  if [ -x /etc/rc.d/rc.zram ]; then
+    /etc/rc.d/rc.zram start
+  fi
+
+

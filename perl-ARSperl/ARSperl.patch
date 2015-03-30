@@ -1,0 +1,19 @@
+*** ARSnparm.pm	2007-07-20 21:57:56.000000000 +0200
+--- ARSnparm.pm.patched	2009-10-23 12:24:28.000000000 +0200
+***************
+*** 86,92 ****
+    foreach my $key (keys %$param) {
+      #print "validating: $key\n";
+      my (@t) = grep(/^$key$/, @possibilities);
+!     Carp::confess "invalid named parameter \"$key\"" if $#t == -1;
+    }  
+  
+    my(@return_array);
+--- 86,92 ----
+    foreach my $key (keys %$param) {
+      #print "validating: $key\n";
+      my (@t) = grep(/^$key$/, @possibilities);
+!     Carp::confess( "invalid named parameter \"$key\"" ) if $#t == -1;
+    }  
+  
+    my(@return_array);

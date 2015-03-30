@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# Slackware build script for zram
+
+# Copyright (c) 2013-2014 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+kernel_version_compare() {
+  if [ "$1" = $(echo -e "$1\n$2" | sort -V | head -1) ]; then echo 0; fi 
+}
+
+PRGNAM=zram-kernel-module
+KERNEL=${KERNEL:-$(uname -r)}
+VERSION=$KERNEL
+BUILD=1
+TAG=${TAG:-"lotar"}
+
+unset ARCH
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/lotar}
+PKG=${PKG:-$TMP/package-$PRGNAM}
+OUTPUT=${OUTPUT:-/tmp}
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+
+cd /usr/src/linux-$KERNEL
+
+if [ $(kernel_version_compare "3.14" "$KERNEL") ]; then
+
+  make CONFIG_ZSMALLOC=m M=mm
+  make CONFIG_ZRAM=m M=drivers/block/zram
+
+  mkdir -p $PKG/lib/modules/$KERNEL/kernel/{drivers/block/zram,mm}
+
+  install -m 0664 mm/zsmalloc.ko $PKG/lib/modules/$KERNEL/kernel/mm
+  install -m 0644 drivers/block/zram/zram.ko $PKG/lib/modules/$KERNEL/kernel/drivers/block/zram
+
+else
+
+  make CONFIG_ZSMALLOC=m M=drivers/staging/zsmalloc
+  make CONFIG_ZRAM=m M=drivers/staging/zram
+  
+  mkdir -p $PKG/lib/modules/$KERNEL/kernel/drivers/staging/{zsmalloc,zram}
+  
+  install -m 0644 drivers/staging/zsmalloc/zsmalloc.ko $PKG/lib/modules/$KERNEL/kernel/drivers/staging/zsmalloc/
+  install -m 0644 drivers/staging/zram/zram.ko $PKG/lib/modules/$KERNEL/kernel/drivers/staging/zram
+
+fi
+	
+mkdir -p $PKG/install
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/etc/rc.d
+
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+cat $CWD/rc.zram > $PKG/etc/rc.d/rc.zram.new
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-txz}
+

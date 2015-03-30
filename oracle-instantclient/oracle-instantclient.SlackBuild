@@ -1,0 +1,108 @@
+#!/bin/sh
+
+# Slackware build script for Oracle Instant Client
+
+# Copyright (c) 2012-2014 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+# All rights reserved.
+#
+# Redistribution and use of this script, with or without modification, is
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of this script must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+#  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO
+#  EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=oracle-instantclient
+VERSION=${VERSION:-12.1.0.1.0}
+ARCH=${ARCH:-$(uname -m)}
+BUILD=${BUILD:-1}
+TAG=${TAG:-lotar}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/build}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ $ARCH = "x86_64" ]; then
+  ORCL_ARCH="64"
+else
+  ORCL_ARCH=""
+fi
+
+ORCL_VER=$(echo $VERSION | cut -f 1-2 -d .)
+ORCL_BASE=$PKG/usr/lib$ORCL_ARCH/oracle
+ORCL_HOME=$ORCL_BASE/$ORCL_VER
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+
+mkdir -p $ORCL_BASE
+
+(
+  for FILE in $CWD/instantclient*linux*$ORCL_ARCH-$VERSION*.zip; do
+    unzip $FILE -d $ORCL_BASE
+  done
+
+  cd $ORCL_BASE
+  mv instantclient* $ORCL_VER
+
+  mkdir -p $ORCL_HOME/{log,network/admin}
+)
+
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+( 
+  cd $ORCL_HOME
+
+  for LIBRARY in *.so.*; do
+    ln -s $LIBRARY $(echo $LIBRARY | cut -f 1-2 -d .)
+  done
+
+  if [ -f sqlplus ]; then
+    mkdir -p $PKG/usr/bin
+    ln -s sqlplus $PKG/usr/bin/sqlplus
+  fi
+)
+
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | \
+    xargs strip --strip-unneeded 2> /dev/null || true
+  find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | \
+    xargs strip --strip-unneeded 2> /dev/null || true
+)
+
+mkdir -p $PKG/install
+
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cat << EOF > $PKG/install/doinst.sh
+if ! grep /usr/lib$ORCL_ARCH/oracle/$ORCL_VER etc/ld.so.conf 1> /dev/null 2> /dev/null ; then
+  echo "/usr/lib$ORCL_ARCH/oracle/$ORCL_VER" >> etc/ld.so.conf
+fi
+if [ -x /sbin/ldconfig ]; then
+  /sbin/ldconfig 2> /dev/null
+fi
+EOF
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.${PKGTYPE:-txz}
+

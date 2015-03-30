@@ -1,0 +1,41 @@
+Oracle Instant Client SlackBuild
+--------------------------------
+
+  This is a SlackBuild that will repackage Oracle Instant Client into a package
+  that can be easily installed, upgraded, or removed using Slackware's native
+  package management tools.
+
+Instructions for build the package
+----------------------------------
+
+  - Download from Oracle.com the necessary zip packages (basic or basiclite, 
+    sdk, sqlplus, etc.) and put them in this directory.
+
+  - Launch the SlackBuild,
+
+      ./oracle-instantclient.SlackBuild
+
+  - Install the package,
+
+      upgradepkg --install-new \
+       /tmp/oracle-instantclient-12.1.0.1.0-x86_64-1lotar.txz
+
+  - Set in your ~/.profile the variables ORACLE_HOME and LD_LIBRARY_PATH,
+  
+      export ORACLE_HOME=/usr/lib64/oracle/12.1/
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
+
+SlackBuild flags
+----------------
+
+  VERSION  Oracle Instant Client version (eg. 11.2.1.0)
+  ARCH     Client architecture (eg. i686)
+  
+  Example:
+    VERSION=12.1.0.1.0 ARCH=x86_64 ./oracle-instantclient.SlackBuild
+
+
+Oracle Instant Client Download Home-Page
+----------------------------------------
+
+  http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html

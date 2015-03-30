@@ -1,0 +1,42 @@
+ARSperl is an integration kit for Perl5 and Remedy ARS version 5-7 API.
+It provides a large subset of the functionality found in the ARS C API.
+
+
+SlackBuild Flags
+----------------
+
+  ARSVERSION    ARS Remedy API version installed on your machine (default: 7.1)
+  ARSAPI        ARS Remedy API directory (default: /usr/ar/api)
+
+  TEST                  Enable/Disable test suite after compilation (default: 0)
+  ARSPERLTEST_SERVER    ARS Remedy Server hostname or IP (default: localhost)
+  ARSPERLTEST_TCPPORT   ARS Remedy Server TCP/IP port (default: 65000)
+  ARSPERLTEST_USERNAME  ARS Remedy Administrator username (default: Demo)
+  ARSPERLTEST_PASSWORD  ARS Remedy Administrator password (default: NULL)
+
+
+Usage
+-----
+
+  $ ARSVERSION=7.6 ARSAPI=/opt/bmc/ARSystem/api ./perl-ARSperl.Slackbuild
+
+
+IMPORTANT NOTE FOR x86_64 USERS
+-------------------------------
+
+  ARSperl require Perl5 at 32bit.
+
+  Instructions for build:
+
+    1. Install Alien's multilib and perl-compat32
+    2. Switch to 32bit environment:
+      # . /etc/profile.d/32dev.sh
+    3. Execute SlackBuild Script (see SlackBuild Flags)
+
+  Instructions for execute Perl script with ARS module:
+
+    1. Switch to 32bit environment:
+      $ . /etc/profile.d/32dev.sh
+    2. Execute your script:
+      $ perl my-script-pl
+
