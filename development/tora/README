@@ -5,4 +5,3 @@ through Qt's ODBC support.
 
 For Oracle DBMS support, run the script like this,
   ORACLE_HOME=/path/to/oracle/home ./tora.Slackbuild
-
