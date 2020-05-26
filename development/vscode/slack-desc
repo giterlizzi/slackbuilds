@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+      |-----handy-ruler------------------------------------------------------|
+vscode: vscode (Visual Studio Code)
+vscode:
+vscode: Visual Studio Code combines the simplicity of a code editor with what
+vscode: developers need for their core edit-build-debug cycle. It provides
+vscode: comprehensive code editing, navigation, and understanding support
+vscode: along with lightweight debugging, a rich extensibility model, and
+vscode: lightweight integration with existing tools.
+vscode:
+vscode:
+vscode: Home-Page: https://code.visualstudio.com
+vscode:
