@@ -1,0 +1,18 @@
+PRGNAM="oracle-instantclient"
+VERSION="19.8.0.0.0"
+HOMEPAGE="https://www.oracle.com/database/technologies/instant-client.html"
+DOWNLOAD="UNSUPPORTED"
+MD5SUM="UNSUPPORTED"
+DOWNLOAD_x86_64="https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip \
+                 https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-jdbc-linux.x64-19.8.0.0.0dbru.zip \
+                 https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-odbc-linux.x64-19.8.0.0.0dbru.zip \
+                 https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-sdk-linux.x64-19.8.0.0.0dbru.zip \
+                 https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-sqlplus-linux.x64-19.8.0.0.0dbru.zip"
+MD5SUM_x86_64="6c1fbe6300fb567a85fc2a83264eca1b \
+               b900e0c1396c7318cff5737443b57450 \
+               e6ca4ca73ac613c6c06863d73b9869e0 \
+               fc09bb458f85d1f42f8bab54d1660d17 \
+               f7c8308af694869091a5c73a9491816d"
+REQUIRES=""
+MAINTAINER="Giuseppe Di Terlizzi"
+EMAIL="giuseppe.diterlizzi@gmail.com"
