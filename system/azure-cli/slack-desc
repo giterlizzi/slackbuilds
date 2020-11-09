@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+              |-----handy-ruler------------------------------------------------------|
+azure-cli: azure-cli (Azure Command-Line Interface)
+azure-cli:
+azure-cli: The Azure command-line interface (Azure CLI) is a set of commands used to
+azure-cli: create and manage Azure resources. The Azure CLI is available across Azure
+azure-cli: services and is designed to get you working quickly with Azure, with an
+azure-cli: emphasis on automation.
+azure-cli:
+azure-cli:
+azure-cli:
+azure-cli: Homepage: https://docs.microsoft.com/en-US/cli/azure
+azure-cli:
