@@ -68,7 +68,7 @@ rm -rf $PKG/usr/share/man
 
 # Install MS Edge icons
 for res in 16 24 32 48 64 128 256; do
-  install -Dm644 "$PKG/opt/microsoft/msedge-$RELEASE/product_logo_${res}_dev.png" \
+  install -Dm644 "$PKG/opt/microsoft/msedge-$RELEASE/product_logo_${res}_${RELEASE}.png" \
     "$PKG/usr/share/icons/hicolor/${res}x${res}/apps/microsoft-edge-$RELEASE.png"
 done
 
