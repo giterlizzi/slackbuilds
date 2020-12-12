@@ -26,7 +26,7 @@
 PRGNAM=shc
 VERSION=${VERSION:-3.9.6}
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
+TAG=${TAG:-lotar}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
