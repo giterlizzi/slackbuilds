@@ -24,7 +24,7 @@
 
 PRGNAM=microsoft-edge
 RELEASE=${RELEASE:-dev}
-VERSION=${VERSION:-88.0.702.0}
+VERSION=${VERSION:-89.0.723.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-lotar}
 
