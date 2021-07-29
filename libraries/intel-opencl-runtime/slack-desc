@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                    |-----handy-ruler------------------------------------------------------|
+intel-opencl-runtime: Intel® CPU Runtime for OpenCL™ Applications
+intel-opencl-runtime:
+intel-opencl-runtime: OpenCL (Open Computing Language) is an open standard for
+intel-opencl-runtime: general-purpose parallel programming. OpenCL provides a uniform
+intel-opencl-runtime: programming environment for software developers to write portable
+intel-opencl-runtime: code for client computer systems, high-performance computing servers,
+intel-opencl-runtime: and other compute systems.
+intel-opencl-runtime:
+intel-opencl-runtime:
+intel-opencl-runtime: Home-Page: http://software.intel.com/en-us/forums/intel-opencl-sdk/
+intel-opencl-runtime:
