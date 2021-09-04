@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=vscode
-VERSION=${VERSION:-1.59.0}
+VERSION=${VERSION:-1.60.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-lotar}
 
@@ -39,7 +39,7 @@ TMP=${TMP:-/tmp/lotar}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
-RPMNAM=$(ls $CWD/code-$VERSION-*.el8.$ARCH.rpm)
+RPMNAM=$(ls $CWD/code-$VERSION-*.el*.$ARCH.rpm)
 
 set -e
 
