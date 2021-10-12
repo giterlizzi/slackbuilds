@@ -24,7 +24,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=dbeaver
-VERSION=${VERSION:-21.1.0}
+VERSION=${VERSION:-21.2.2}
 BUILD=${BUILD:-1}
 TAG=${TAG:-lotar}
 
@@ -59,15 +59,17 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 mkdir -p $PKG/usr/share/applications
-cp $PKG/usr/share/$PRGNAM/dbeaver.desktop $PKG/usr/share/applications
+cp $PKG/usr/share/$PRGNAM/dbeaver-ce.desktop $PKG/usr/share/applications/dbeaver.desktop
+
+sed -i 's/-ce//g' $PKG/usr/share/applications/dbeaver.desktop
 
 mkdir -p $PKG/usr/bin
 cat << EOF > $PKG/usr/bin/$PRGNAM
 #!/bin/sh
 cd \$HOME
-/usr/share/$PRGNAM/$PRGNAM \$@
+/usr/share/$PRGNAM/dbeaver \$@
 EOF
-chmod 0755 $PKG/usr/bin/$PRGNAM
+chmod 0755 $PKG/usr/bin/dbeaver
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
