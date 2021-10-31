@@ -23,8 +23,8 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=microsoft-edge
-CHANNEL=${CHANNEL:-beta}
-VERSION=${VERSION:-95.0.1020.20}
+CHANNEL=${CHANNEL:-stable}
+VERSION=${VERSION:-95.0.1020.40}
 BUILD=${BUILD:-1}
 TAG=${TAG:-lotar}
 
@@ -63,12 +63,21 @@ mkdir -p $PKG/usr/man
 mv $PKG/usr/share/man/* $PKG/usr/man
 rm -rf $PKG/usr/share/man
 
-chmod 4755 $PKG/opt/microsoft/msedge-$CHANNEL/msedge-sandbox
+if [ "$CHANNEL" == "stable" ]; then
+  chmod 4755 $PKG/opt/microsoft/msedge/msedge-sandbox
+else
+  chmod 4755 $PKG/opt/microsoft/msedge-$CHANNEL/msedge-sandbox
+fi
 
 # Install MS Edge icons
 for res in 16 24 32 48 64 128 256; do
-  install -Dm644 "$PKG/opt/microsoft/msedge-$CHANNEL/product_logo_${res}_${CHANNEL}.png" \
-    "$PKG/usr/share/icons/hicolor/${res}x${res}/apps/microsoft-edge-$CHANNEL.png"
+  if [ "$CHANNEL" == "stable" ]; then
+    install -Dm644 "$PKG/opt/microsoft/msedge/product_logo_${res}.png" \
+      "$PKG/usr/share/icons/hicolor/${res}x${res}/apps/microsoft-edge.png"  
+  else
+    install -Dm644 "$PKG/opt/microsoft/msedge-$CHANNEL/product_logo_${res}_${CHANNEL}.png" \
+      "$PKG/usr/share/icons/hicolor/${res}x${res}/apps/microsoft-edge-$CHANNEL.png"
+  fi
 done
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
