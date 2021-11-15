@@ -24,7 +24,7 @@
 
 PRGNAM=microsoft-edge
 CHANNEL=${CHANNEL:-stable}
-VERSION=${VERSION:-95.0.1020.40}
+VERSION=${VERSION:-95.0.1020.53}
 BUILD=${BUILD:-1}
 TAG=${TAG:-lotar}
 
