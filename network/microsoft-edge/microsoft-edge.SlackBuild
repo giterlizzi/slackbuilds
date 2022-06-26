@@ -24,9 +24,9 @@
 
 PRGNAM=microsoft-edge
 CHANNEL=${CHANNEL:-stable}
-VERSION=${VERSION:-99.0.1150.55}
+VERSION=${VERSION:-103.0.1264.37}
 BUILD=${BUILD:-1}
-TAG=${TAG:-lotar}
+TAG=${TAG:-gdt}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
