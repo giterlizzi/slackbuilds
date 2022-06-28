@@ -2,7 +2,7 @@
 
 # Slackware build script for DavMail
 
-# Copyright (c) 2015-2021 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+# Copyright (c) 2015-2022 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -27,10 +27,16 @@
 # Updated by Alfredo Tomasini <alto.tom@gmail.com> to support .zip releases
 
 PRGNAM=davmail
-VERSION=${VERSION:-6.0.0}
+VERSION=${VERSION:-6.0.1}
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
+TAG=${TAG:-gdt}
 ARCH=noarch
+PKGTYPE=${PKGTYPE:-tgz}
+
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
 
 CWD=$(pwd)
 TMP=${TMP:-/tmp/SBo}
@@ -81,4 +87,4 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-${VERSION}-$ARCH-$BUILD$TAG.${PKGTYPE:-tgz}
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
