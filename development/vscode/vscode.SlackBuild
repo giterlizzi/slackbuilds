@@ -23,9 +23,9 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=vscode
-VERSION=${VERSION:-1.67.2}
+VERSION=${VERSION:-1.69.2}
 BUILD=${BUILD:-1}
-TAG=${TAG:-lotar}
+TAG=${TAG:-gdt}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -35,7 +35,7 @@ if [ -z "$ARCH" ]; then
 fi
 
 CWD=$(pwd)
-TMP=${TMP:-/tmp/lotar}
+TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
