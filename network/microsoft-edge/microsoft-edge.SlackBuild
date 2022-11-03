@@ -24,7 +24,7 @@
 
 PRGNAM=microsoft-edge
 CHANNEL=${CHANNEL:-stable}
-VERSION=${VERSION:-105.0.1343.42}
+VERSION=${VERSION:-107.0.1418.28}
 BUILD=${BUILD:-1}
 TAG=${TAG:-gdt}
 
@@ -36,7 +36,7 @@ if [ -z "$ARCH" ]; then
 fi
 
 CWD=$(pwd)
-TMP=${TMP:-/tmp/lotar}
+TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
