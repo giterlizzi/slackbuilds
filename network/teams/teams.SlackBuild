@@ -2,7 +2,7 @@
 
 # Slackware build script for Microsoft Teams
 
-# Copyright 2020-2021 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+# Copyright 2020-2022 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -23,9 +23,9 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=teams
-VERSION=${VERSION:-1.4.00.26453}
+VERSION=${VERSION:-1.5.00.23861}
 BUILD=${BUILD:-1}
-TAG=${TAG:-lotar}
+TAG=${TAG:-gdt}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -35,7 +35,7 @@ if [ -z "$ARCH" ]; then
 fi
 
 CWD=$(pwd)
-TMP=${TMP:-/tmp/lotar}
+TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
