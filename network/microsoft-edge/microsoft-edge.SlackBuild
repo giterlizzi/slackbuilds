@@ -2,7 +2,7 @@
 
 # Slackware build script for Microsoft Edge
 
-# Copyright 2020-2022 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
+# Copyright 2020-2023 Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -22,9 +22,11 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+cd $(dirname $0) ; CWD=$(pwd)
+
 PRGNAM=microsoft-edge
 CHANNEL=${CHANNEL:-stable}
-VERSION=${VERSION:-112.0.1722.48}
+VERSION=${VERSION:-114.0.1823.67}
 BUILD=${BUILD:-1}
 TAG=${TAG:-gdt}
 
@@ -33,6 +35,11 @@ if [ -z "$ARCH" ]; then
     x86_64) ARCH=x86_64 ;;
          *) echo "Architecture not supported"; exit 0;
   esac
+fi
+
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
 fi
 
 CWD=$(pwd)
