@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Slackware build script for Tenable(TM) Nessus Vulnerability Scanner
 
@@ -25,10 +25,10 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=nessus
-VERSION=${VERSION:-10.5.3}
+VERSION=${VERSION:-10.5.4}
 BUILD=${BUILD:-1}
-TAG=${TAG:-gdt}
-PKGTYPE=${PKGTYPE:-txz}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
