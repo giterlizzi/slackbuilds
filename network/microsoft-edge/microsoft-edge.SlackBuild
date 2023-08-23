@@ -26,7 +26,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=microsoft-edge
 CHANNEL=${CHANNEL:-stable}
-VERSION=${VERSION:-114.0.1823.67}
+VERSION=${VERSION:-116.0.1938.54}
 BUILD=${BUILD:-1}
 TAG=${TAG:-gdt}
 
