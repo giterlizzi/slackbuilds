@@ -36,7 +36,7 @@ preserve_perms etc/rc.d/rc.nessusd.new
 
 echo ""
 echo "Unpacking Nessus Core Components..."
-/opt/nessus/sbin/nessuscli install /opt/nessus/var/nessus/plugins-core.tar.gz
+chroot . /opt/nessus/sbin/nessuscli install /opt/nessus/var/nessus/plugins-core.tar.gz
 
 echo " - You can start Nessus by typing sh /etc/rc.d/rc.nessusd start"
 echo " - Then go to https://"`hostname`":8834/ to configure your scanner"
