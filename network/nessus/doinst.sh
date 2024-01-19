@@ -25,10 +25,10 @@ preserve_perms() {
 }
 
 if [ -e /etc/rc.d/rc.nessusd ]; then
-  sh /etc/rc.d/rc.nessusd status > /dev/null 2>&1
+  chroot . sh /etc/rc.d/rc.nessusd status > /dev/null 2>&1
   RETVAL=$?
   if [ "$RETVAL" == "0" ]; then
-    sh /etc/rc.d/rc.nessusd stop > /dev/null 2>&1
+    chroot . sh /etc/rc.d/rc.nessusd stop > /dev/null 2>&1
   fi
 fi
 
