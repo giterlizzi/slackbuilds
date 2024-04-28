@@ -8,8 +8,8 @@
        |-----handy-ruler------------------------------------------------------|
 davmail: davmail (POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway)
 davmail:
-davmail: DavMail is a POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange and Office 365
-davmail: Gateway allowing users to use any mail/calendar client with an Exchange
+davmail: DavMail is a POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange gateway
+davmail: allowing users to use any mail/calendar client with an Exchange
 davmail: server, even from the internet or behind a firewall through Outlook
 davmail: Web Access. DavMail now includes an LDAP gateway to Exchange global
 davmail: address book and user personal contacts to allow recipient address
