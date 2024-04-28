@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=sqlcl
-VERSION=${VERSION:-23.3.0.270.1251}
+VERSION=${VERSION:-24.1.0.087.0929}
 ARCH=${ARCH:-noarch}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
@@ -66,10 +66,10 @@ find -L . \
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 
-mv $PKG/opt/sqlcl/*.md $PKG/usr/doc/$PRGNAM-$VERSION
-mv $PKG/opt/sqlcl/*.txt $PKG/usr/doc/$PRGNAM-$VERSION
-mv $PKG/opt/sqlcl/bin/*.md $PKG/usr/doc/$PRGNAM-$VERSION
-mv $PKG/opt/sqlcl/bin/*.txt $PKG/usr/doc/$PRGNAM-$VERSION
+mv $PKG/opt/sqlcl/*.md $PKG/usr/doc/$PRGNAM-$VERSION || true
+mv $PKG/opt/sqlcl/*.txt $PKG/usr/doc/$PRGNAM-$VERSION || true
+mv $PKG/opt/sqlcl/bin/*.md $PKG/usr/doc/$PRGNAM-$VERSION || true
+mv $PKG/opt/sqlcl/bin/*.txt $PKG/usr/doc/$PRGNAM-$VERSION || true
 
 rm $PKG/opt/sqlcl/$VERSION || true
 
