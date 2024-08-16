@@ -1,0 +1,60 @@
+#!/bin/sh
+# Start/stop/restart the Shrew Soft IKE daemon (iked).
+
+start() {
+  if [ -e /var/run/iked.pid ]; then
+    echo "ERROR: Not starting Shrew Soft IKE daemon because /var/run/iked.pid exists."
+  elif [ -x /usr/sbin/iked ]; then
+    echo "Starting Shrew Soft IKE daemon:  /usr/sbin/iked"
+    /usr/sbin/iked -p /var/run/iked.pid > /dev/null 2> /dev/null
+  fi
+}
+
+stop() {
+  if [ -e /var/run/iked.pid ]; then
+    echo "Stopping Shrew Soft IKE daemon."
+    kill -INT $(cat /var/run/iked.pid)
+  else
+    echo "ERROR: Not stopping Shrew Soft IKE daemon server because /var/run/iked.pid does not exist."
+  fi
+  rm -f /var/run/iked.pid
+}
+
+restart() {
+  stop
+  sleep 1
+  start
+}
+
+status() {
+  if [ -e /var/run/iked.pid ]; then
+    if ps axc | grep iked >/dev/null 2>&1; then
+      echo "Shrew Soft IKE daemon is running."
+      return 0
+    fi
+    echo "Shrew Soft IKE daemon PID file exists but the service is down."
+    return 1
+  else
+    echo "Shrew Soft IKE daemon is stopped."
+    return 0
+  fi
+}
+
+case "$1" in
+  'start')
+    start
+    ;;
+  'stop')
+    stop
+    ;;
+  'restart')
+    restart
+    ;;
+  'status')
+    status
+    ;;
+  *)
+    echo "usage $0 start|stop|restart|status"
+esac
+
+exit 0
