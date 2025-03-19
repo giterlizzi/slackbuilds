@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+# Start/Stop/Restart the Falco daemon.
+#
+
+PIDFILE=/var/run/falco/falco.pid
+mkdir -p /var/run/falco
+
+# Get $FALCO_OPTS:
+if [ -r /etc/default/falco ]; then
+  . /etc/default/falco
+fi
+
+# Start
+falco_start() {
+  if [ -x /usr/sbin/falco ]; then
+    if [ -e "$PIDFILE" ]; then
+      echo "Falco daemon already started!"
+    else
+      echo "Falco daemon:  /usr/sbin/falco $FALCO_OPTS"
+      nohup /usr/sbin/falco --pidfile $PIDFILE $FALCO_OPTS 2>&1 &
+    fi
+  fi
+}
+
+# Stop
+falco_stop() {
+  echo "Stopping Falco daemon..."
+  if [ -e "$PIDFILE" ]; then
+    kill $(cat $PIDFILE | tr -d '\0')
+    rm -f $PIDFILE 2>&1 >/dev/null
+  else
+     killall --ns $$ falco 2>&1 >/dev/null
+  fi
+}
+
+# Restart
+falco_restart() {
+  falco_stop
+  sleep 3
+  falco_start
+}
+
+# Status
+falco_status() {
+  if [ -e "$PIDFILE" ]; then
+    echo "falco is running."
+  else
+    echo "falco is stopped."
+  fi
+}
+
+# Reload
+falco_reload() {
+  if [ -e "$PIDFILE" ]; then
+    kill -1 $(cat $PIDFILE | tr -d '\0')
+    echo "falco is reloaded."
+  else
+    echo "falco is stopped."
+  fi
+}
+
+case "$1" in
+'start')
+  falco_start
+  ;;
+'stop')
+  falco_stop
+  ;;
+'restart')
+  falco_restart
+  ;;
+'status')
+  falco_status
+  ;;
+'reload')
+  falco_reload
+  ;;
+*)
+  echo "usage: $0 start|stop|restart|reload|status"
+esac

@@ -1,0 +1,28 @@
+README.Slackware
+================
+
+This file contains some basic instructions to get falco installed and 
+running on your computer.
+
+1) Post-installation
+
+If you want to use the kernel module (require "dkms" package), configure Falco for it:
+
+  # falcoctl driver config --type kmod
+
+If you want to use the eBPF probe, configure Falco for it
+
+  # falcoctl driver config --type ebpf
+
+Install the chosen driver
+
+  # falcoctl driver install
+
+1.2) Make /etc/rc.d/rc.falco executable:
+
+  # chmod +x /etc/rc.d/rc.falco
+
+1.3) Start falco:
+
+  # /etc/rc.d/rc.falco start
+

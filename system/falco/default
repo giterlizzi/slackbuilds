@@ -1,0 +1,3 @@
+# Configuration options for Falco daemon
+
+FALCO_OPTS=""
